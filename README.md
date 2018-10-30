@@ -13,4 +13,5 @@ You will need to install the following Python modules: `sqlite3`, `json` and `Tw
 3. Create a database with `python createdb.py [database name]` (replace [database name] with your actual database name, omit `.sqlite` - it will be added automatically).
 4.
 	* If you want to search Twitter based on selected keywords, edit the `search_list`  in `search_twitter.py` and launch the script with `python search_twitter.py [database name]` (omit `.sqlite`).
+	* If you want to search Twitter based on geographic coordinates, edit and uncomment `'locations':'-122.75,36.8,-121.75,37.8'}`  in `search_twitter.py` and launch the script with `python search_twitter.py [database name]` (omit `.sqlite`).
    * If you want to parse all the available tweets from a specific user, edit the `twitter_screen_name` in `get_user_timeline.py` and launch the script with `python get_user_timeline.py [database name]` (omit `.sqlite`).
