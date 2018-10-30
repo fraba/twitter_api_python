@@ -57,14 +57,66 @@ CREATE TABLE tweet (
     in_reply_to_status_id CHAR,
     in_reply_to_user_id CHAR,
     place TEXT,
+    lang TEXT,
     retweet_count INTEGER,
     retweeted_status_id CHAR,
     source CHAR,
     text TEXT,
+    hashtags TEXT,
+    media TEXT,
+    urls TEXT,
+    user_mentions TEXT,
     user_id CHAR REFERENCES user ( id ),
     timestamp DATETIME DEFAULT ( CURRENT_TIMESTAMP ) 
     );
                """)
+
+cursor.execute("""
+-- Table: hashtag
+CREATE TABLE hashtag (
+    tweet_id CHAR,
+    text CHAR,
+    timestamp DATETIME DEFAULT ( CURRENT_TIMESTAMP ),
+    PRIMARY KEY (tweet_id, text)
+    );
+               """)
+
+cursor.execute("""
+-- Table: media
+CREATE TABLE media (
+    tweet_id CHAR,
+    media_id CHAR,
+    type CHAR,
+    media_url CHAR,
+    expanded_url CHAR, 
+    timestamp DATETIME DEFAULT ( CURRENT_TIMESTAMP ),
+    PRIMARY KEY (tweet_id, media_id)
+    );
+               """)
+
+cursor.execute("""
+-- Table: url
+CREATE TABLE url (
+    tweet_id CHAR,
+    expanded_url CHAR,
+    timestamp DATETIME DEFAULT ( CURRENT_TIMESTAMP ),
+    PRIMARY KEY (tweet_id, expanded_url)
+    );
+               """)
+
+cursor.execute("""
+-- Table: user_mention
+CREATE TABLE user_mention (
+    tweet_id CHAR,
+    name CHAR, 
+    screen_name CHAR, 
+    user_id CHAR,
+    timestamp DATETIME DEFAULT ( CURRENT_TIMESTAMP ),
+    PRIMARY KEY (tweet_id, user_id)
+    );
+               """)
+
+
 
 cursor.execute("""
 -- Table: log
