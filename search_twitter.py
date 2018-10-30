@@ -49,8 +49,7 @@ while True:
     for item in r.get_iterator():
     ## print item
         print( '@%s tweeted: %s' % ( item['user']['screen_name'], item['text'] ) )
-        tweet = parseTweet(item)
-        enterTweet(tweet, DB)
+        parseTweet(item, DB)
         user = parseUser(item)
         enterUser(user, DB)
 #    except:
