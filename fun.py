@@ -199,7 +199,10 @@ def parseUser(tweet_source):
         user['location'] = tweet_source['user'].get('location','').encode('utf-8')
     else:
         user['location'] = ''
-    user['lang'] = tweet_source['user'].get('lang','').encode('utf-8')
+    if tweet_source['user']['lang']:
+        user['lang'] = tweet_source['user'].get('lang','').encode('utf-8')
+    else:
+        user['lang'] = ''
     user['statuses_count'] = tweet_source['user'].get('statuses_count','')
     if tweet_source['user']['time_zone']:
         user['time_zone'] = tweet_source['user'].get('time_zone','').encode('utf-8')
