@@ -60,7 +60,7 @@ def enterMedia(tweet_id, media, db):
         cursor.execute("INSERT OR IGNORE INTO media (tweet_id, media_id, type, media_url, expanded_url) VALUES (?, ?, ?, ?, ?)", (tweet_id, media['id_str'],  media['type'],  media['media_url'],  media['expanded_url']))
         conn.commit()
     except sqlite3.Error as e:
-        print "Database error entering media:", e.args[0]
+        print("Database error entering media:", e.args[0])
         pass
 
     return
@@ -74,7 +74,7 @@ def enterUrl(tweet_id, url, db):
         cursor.execute("INSERT OR IGNORE INTO url (tweet_id, expanded_url) VALUES (?, ?)", (tweet_id, url['expanded_url']))
         conn.commit()
     except sqlite3.Error as e:
-        print "Database error entering url:", e.args[0]
+        print("Database error entering url:", e.args[0])
         pass
 
     return
@@ -88,7 +88,7 @@ def enterUserMention(tweet_id, user_mention, db):
         cursor.execute("INSERT OR IGNORE INTO user_mention (tweet_id, name, screen_name, user_id) VALUES (?, ?, ?, ?)", (tweet_id, user_mention['name'], user_mention['screen_name'], user_mention['id_str'],))
         conn.commit()
     except sqlite3.Error as e:
-        print "Database error entering user_mention:", e.args[0]
+        print("Database error entering user_mention:", e.args[0])
         pass
 
     return
@@ -223,6 +223,6 @@ def manageApiResponse(search_or_error_string, error_bool, db):
         cursor.execute("INSERT INTO log (status, error) VALUES (?, ?)", (str(search_or_error_string), str(error_bool)))
         conn.commit()
     except sqlite3.Error as e:
-        print "Database error entering log:", e.args[0]
+        print("Database error entering log:", e.args[0])
 
     return
